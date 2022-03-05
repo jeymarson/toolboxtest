@@ -27,7 +27,7 @@ export const LoginLayout = ({
         disabled={loading}
       />
       <CustomButton label="Salir" onPress={onExit} disabled={loading} />
-      <Text style={styles.footer}>Test</Text>
+      <Text style={styles.footer}>toolbox test app</Text>
     </SafeAreaView>
   );
 };

@@ -1,10 +1,19 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {ActivityIndicator, SafeAreaView, View, Text} from 'react-native';
 
-export const HomeLayout = () => {
+import {Carousel} from '@models/carouselModels';
+
+import {styles} from './styles';
+
+type HomeLayoutProps = {
+  carousels: Carousel[];
+  loading: boolean;
+};
+
+export const HomeLayout = ({carousels, loading}: HomeLayoutProps) => {
   return (
-    <View>
-      <Text>Home</Text>
-    </View>
+    <SafeAreaView style={[styles.container, loading && styles.loading]}>
+      {loading ? <ActivityIndicator /> : <Text>Home</Text>}
+    </SafeAreaView>
   );
 };
