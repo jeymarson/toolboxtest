@@ -13,7 +13,9 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@constants/*": ["src/constants/*"],
-      "@screens/*": ["src/screens/*"]
+      "@screens/*": ["src/screens/*"],
+      "@config/*": ["src/config/*"],
+      "@services/*": ["src/services/*"]
     },
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,

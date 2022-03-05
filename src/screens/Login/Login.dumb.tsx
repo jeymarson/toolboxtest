@@ -8,9 +8,14 @@ import {styles} from './styles';
 type LoginContainerProps = {
   onLogin: () => void;
   onExit: () => void;
+  loading: boolean;
 };
 
-export const LoginLayout = ({onLogin, onExit}: LoginContainerProps) => {
+export const LoginLayout = ({
+  onLogin,
+  onExit,
+  loading,
+}: LoginContainerProps) => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>TOOLBOX</Text>
@@ -18,8 +23,10 @@ export const LoginLayout = ({onLogin, onExit}: LoginContainerProps) => {
         styles={styles.signInButton}
         label="Ingresar"
         onPress={onLogin}
+        loading={loading}
+        disabled={loading}
       />
-      <CustomButton label="Salir" onPress={onExit} />
+      <CustomButton label="Salir" onPress={onExit} disabled={loading} />
       <Text style={styles.footer}>Test</Text>
     </SafeAreaView>
   );

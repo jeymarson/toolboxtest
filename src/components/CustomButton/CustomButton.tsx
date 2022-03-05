@@ -1,7 +1,12 @@
 import React from 'react';
-import {Text, TouchableOpacity, ViewStyle} from 'react-native';
+import {
+  ActivityIndicator,
+  Text,
+  TouchableOpacity,
+  ViewStyle,
+} from 'react-native';
 
-import {BLACK, WHITE} from '@constants/colors';
+import {BLACK, GRAY, WHITE} from '@constants/colors';
 
 import {styles as buttonStyles} from './styles';
 
@@ -11,6 +16,9 @@ type CustomButtonProps = {
   label: string;
   onPress: () => void;
   styles?: ViewStyle;
+  loading?: boolean;
+  disabled?: boolean;
+  testId?: string;
 };
 
 export const CustomButton = ({
@@ -19,12 +27,25 @@ export const CustomButton = ({
   styles,
   color = BLACK,
   textColor = WHITE,
+  disabled = false,
+  loading = false,
+  testId = 'default-custom-button-id',
 }: CustomButtonProps) => {
   return (
     <TouchableOpacity
-      onPress={onPress}
-      style={[buttonStyles.container, {backgroundColor: color}, styles]}>
-      <Text style={[buttonStyles.label, {color: textColor}]}>{label}</Text>
+      disabled={disabled}
+      onPress={() => !disabled && onPress()}
+      style={[
+        buttonStyles.container,
+        {backgroundColor: disabled ? GRAY : color},
+        styles,
+      ]}
+      testID={testId}>
+      {loading ? (
+        <ActivityIndicator />
+      ) : (
+        <Text style={[buttonStyles.label, {color: textColor}]}>{label}</Text>
+      )}
     </TouchableOpacity>
   );
 };
