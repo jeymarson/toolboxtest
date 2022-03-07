@@ -7,6 +7,8 @@ export interface Item {
 
 export interface Carousel {
   title: string;
-  type: string;
+  type: TypeCarousel;
   items: Item[];
 }
+
+export type TypeCarousel = 'thumb' | 'poster';

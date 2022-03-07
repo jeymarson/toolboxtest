@@ -1,27 +1,38 @@
 import React, {useState} from 'react';
 import {ActivityIndicator, SafeAreaView, View, Text} from 'react-native';
 
-import {Carousel} from '@models/carouselModels';
+import {Carousel as CarouselModel, TypeCarousel} from '@models/carouselModels';
 
 import {styles} from './styles';
-import {Tabs} from '@components/Tabs';
+import {Carousel} from './components/Carousel';
+import {Tabs} from './components/Tabs';
 
 type HomeLayoutProps = {
-  carousels: Carousel[];
+  carousels: CarouselModel[];
   loading: boolean;
-  tabs: {value: number; label: string}[];
+  tabs: {value: TypeCarousel; label: string}[];
 };
 
 export const HomeLayout = ({carousels, loading, tabs}: HomeLayoutProps) => {
-  const [tab, setTab] = useState(1);
+  const [tab, setTab] = useState<TypeCarousel>('thumb');
   return (
-    <SafeAreaView style={[styles.container, loading && styles.loading]}>
+    <SafeAreaView style={[styles.mainContainer, loading && styles.loading]}>
       {loading ? (
         <ActivityIndicator />
       ) : (
-        <>
-          <Tabs onChange={setTab} tabs={tabs} selected={tab} />
-        </>
+        <View style={styles.container}>
+          <Tabs
+            styles={styles.tabs}
+            onChange={setTab}
+            tabs={tabs}
+            selected={tab}
+          />
+          <Carousel
+            data={
+              carousels.find(car => car.type === tab) ?? ({} as CarouselModel)
+            }
+          />
+        </View>
       )}
     </SafeAreaView>
   );
