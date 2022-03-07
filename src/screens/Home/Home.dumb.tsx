@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {ActivityIndicator, SafeAreaView, View} from 'react-native';
 
-import {Carousel as CarouselModel} from '@models/carouselModels';
+import {Carousel as CarouselModel, Item} from '@models/carouselModels';
 
 import {styles} from './styles';
 import {Carousel} from './components/Carousel';
@@ -12,6 +12,7 @@ type HomeLayoutProps = {
   carousels: CarouselModel[];
   loading: boolean;
   tabs: {value: number; label: string}[];
+  onSelectItem: (item: Item) => void;
   onReload: () => void;
   onLogout: () => void;
 };
@@ -22,6 +23,7 @@ export const HomeLayout = ({
   tabs,
   onLogout,
   onReload,
+  onSelectItem,
 }: HomeLayoutProps) => {
   const [tab, setTab] = useState<number>(1);
   return (
@@ -38,7 +40,7 @@ export const HomeLayout = ({
               tabs={tabs}
               selected={tab}
             />
-            <Carousel data={carousels[tab - 1]} />
+            <Carousel onSelect={onSelectItem} data={carousels[tab - 1]} />
           </View>
         </>
       )}

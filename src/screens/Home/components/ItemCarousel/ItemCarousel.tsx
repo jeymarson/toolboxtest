@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, ImageBackground, Text, View} from 'react-native';
+import {Image, ImageBackground, Text, TouchableOpacity} from 'react-native';
 
 import {Item} from '@models/carouselModels';
 
@@ -8,18 +8,16 @@ import {styles} from './styles';
 type ItemCarouselProps = {
   item: Item;
   type: 'thumb' | 'poster';
+  onSelect: (item: Item) => void;
 };
 
-export const ItemCarousel = ({item, type}: ItemCarouselProps) => {
+export const ItemCarousel = ({item, type, onSelect}: ItemCarouselProps) => {
   return (
-    <View
-      style={
-        type === 'poster' ? styles.posterContainer : styles.thumbContainer
-      }>
+    <TouchableOpacity
+      style={type === 'poster' ? styles.posterContainer : styles.thumbContainer}
+      onPress={() => onSelect(item)}>
       {type === 'poster' && (
-        <ImageBackground
-          style={styles.imagePost}
-          source={{uri: item.imageUrl}}>
+        <ImageBackground style={styles.imagePost} source={{uri: item.imageUrl}}>
           <Text style={styles.textPost}>{item.title}</Text>
         </ImageBackground>
       )}
@@ -32,6 +30,6 @@ export const ItemCarousel = ({item, type}: ItemCarouselProps) => {
           <Text style={styles.textThumb}>{item.title}</Text>
         </>
       )}
-    </View>
+    </TouchableOpacity>
   );
 };

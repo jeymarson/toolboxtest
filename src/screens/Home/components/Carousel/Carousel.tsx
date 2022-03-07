@@ -6,7 +6,12 @@ import {Carousel as CarouselModel, Item} from '@models/carouselModels';
 
 import {ItemCarousel} from '../ItemCarousel';
 
-export const Carousel = ({data: {type, items}}: {data: CarouselModel}) => {
+type CarouselProps = {
+  data: CarouselModel;
+  onSelect: (item: Item) => void;
+};
+
+export const Carousel = ({data: {type, items}, onSelect}: CarouselProps) => {
   const ref = useRef(null);
   const {width: windowWidth} = Dimensions.get('window');
   return (
@@ -14,7 +19,7 @@ export const Carousel = ({data: {type, items}}: {data: CarouselModel}) => {
       ref={ref}
       data={items}
       renderItem={({item}: {item: Item}) => (
-        <ItemCarousel item={item} type={type} />
+        <ItemCarousel item={item} onSelect={onSelect} type={type} />
       )}
       separatorWidth={10}
       containerWidth={windowWidth}

@@ -3,7 +3,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AxiosResponse} from 'axios';
 
 import {getCarousels as getCarouselsService} from '@services/carouselService';
-import {Carousel} from '@models/carouselModels';
+import {Carousel, Item} from '@models/carouselModels';
 import {removeAuth} from '@services/authService';
 import {RootStackParamList} from '@config/router';
 
@@ -34,6 +34,10 @@ export const Home = ({navigation}: HomeProps) => {
     navigation.push('Login');
   };
 
+  const handleSelectItem = (item: Item) => {
+    navigation.navigate('VideoPayer', {title: item.title, url: item.videoUrl});
+  };
+
   useEffect(() => {
     getCarousels();
   }, []);
@@ -45,6 +49,7 @@ export const Home = ({navigation}: HomeProps) => {
       loading={loading}
       onReload={getCarousels}
       onLogout={handleLogout}
+      onSelectItem={handleSelectItem}
     />
   );
 };

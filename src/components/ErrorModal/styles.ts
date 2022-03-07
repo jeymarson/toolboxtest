@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
     display: 'flex', 
     flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 16
   },
   errorText: {
