@@ -1,5 +1,6 @@
-import { BLACK, WHITE } from '@constants/colors';
-import {StyleSheet} from 'react-native';
+ import {StyleSheet} from 'react-native';
+ 
+import { WHITE } from '@constants/colors';
 
 export const styles = StyleSheet.create({
   thumbContainer: {

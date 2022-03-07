@@ -8,7 +8,6 @@ import {login as loginService, addAuthHeader} from '@services/authService';
 
 import {LoginLayout} from './Login.dumb';
 
-
 type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
 export const Login = ({navigation}: LoginProps) => {

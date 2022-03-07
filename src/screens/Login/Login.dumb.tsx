@@ -2,9 +2,9 @@ import React from 'react';
 import {SafeAreaView, Text} from 'react-native';
 
 import {CustomButton} from '@components/CustomButton';
+import {ErrorModal} from '@components/ErrorModal';
 
 import {styles} from './styles';
-import {ErrorModal} from '@components/ErrorModal';
 
 type LoginContainerProps = {
   onLogin: () => void;

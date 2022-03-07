@@ -1,5 +1,6 @@
-import {BLACK, GRAY, WHITE} from '@constants/colors';
 import {StyleSheet, ViewStyle} from 'react-native';
+
+import {BLACK, GRAY, WHITE} from '@constants/colors';
 
 const tab: ViewStyle = {
   backgroundColor: WHITE,

@@ -3,10 +3,10 @@ import {ActivityIndicator, SafeAreaView, View} from 'react-native';
 
 import {Carousel as CarouselModel, Item} from '@models/carouselModels';
 
-import {styles} from './styles';
 import {Carousel} from './components/Carousel';
-import {Tabs} from './components/Tabs';
 import {Header} from './components/Header';
+import {Tabs} from './components/Tabs';
+import {styles} from './styles';
 
 type HomeLayoutProps = {
   carousels: CarouselModel[];
