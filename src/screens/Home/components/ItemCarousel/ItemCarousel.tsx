@@ -11,7 +11,6 @@ type ItemCarouselProps = {
 };
 
 export const ItemCarousel = ({item, type}: ItemCarouselProps) => {
-  console.log({item});
   return (
     <View
       style={

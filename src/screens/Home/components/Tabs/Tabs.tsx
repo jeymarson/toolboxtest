@@ -1,14 +1,12 @@
 import React from 'react';
 import {TouchableOpacity, View, Text, ViewStyle} from 'react-native';
 
-import {TypeCarousel} from '@models/carouselModels';
-
 import {styles} from './styles';
 
 type TabsProps = {
-  tabs: {value: TypeCarousel; label: string}[];
-  onChange: (value: TypeCarousel) => void;
-  selected: string;
+  tabs: {value: number; label: string}[];
+  onChange: (value: number) => void;
+  selected: number;
   styles?: ViewStyle;
 };
 

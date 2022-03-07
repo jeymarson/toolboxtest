@@ -3,28 +3,27 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AxiosResponse} from 'axios';
 
 import {getCarousels as getCarouselsService} from '@services/carouselService';
+import {Carousel} from '@models/carouselModels';
 import {removeAuth} from '@services/authService';
 import {RootStackParamList} from '@config/router';
 
 import {HomeLayout} from './Home.dumb';
-import {Carousel, TypeCarousel} from '@models/carouselModels';
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 export const Home = ({navigation}: HomeProps) => {
   const [loading, setLoading] = useState(true);
   const [carousels, setCarousels] = useState<Carousel[]>([]);
-  const [tabs, setTabs] = useState<{value: TypeCarousel; label: string}[]>([]);
+  const [tabs, setTabs] = useState<{value: number; label: string}[]>([]);
 
   const getCarousels = async () => {
     setLoading(true);
     const response: AxiosResponse<Carousel[]> = await getCarouselsService();
-    console.log({data: response.data});
     setCarousels(response.data);
     setTabs(
-      response.data.map(carousel => ({
+      response.data.map((carousel, index) => ({
         label: carousel.title,
-        value: carousel.type,
+        value: index + 1,
       })),
     );
     setLoading(false);

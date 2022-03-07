@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {ActivityIndicator, SafeAreaView, View, Text} from 'react-native';
+import {ActivityIndicator, SafeAreaView, View} from 'react-native';
 
-import {Carousel as CarouselModel, TypeCarousel} from '@models/carouselModels';
+import {Carousel as CarouselModel} from '@models/carouselModels';
 
 import {styles} from './styles';
 import {Carousel} from './components/Carousel';
@@ -11,7 +11,7 @@ import {Header} from './components/Header';
 type HomeLayoutProps = {
   carousels: CarouselModel[];
   loading: boolean;
-  tabs: {value: TypeCarousel; label: string}[];
+  tabs: {value: number; label: string}[];
   onReload: () => void;
   onLogout: () => void;
 };
@@ -23,10 +23,10 @@ export const HomeLayout = ({
   onLogout,
   onReload,
 }: HomeLayoutProps) => {
-  const [tab, setTab] = useState<TypeCarousel>('thumb');
+  const [tab, setTab] = useState<number>(1);
   return (
     <SafeAreaView style={[styles.mainContainer, loading && styles.loading]}>
-      {loading ? (
+      {loading && !carousels.length ? (
         <ActivityIndicator />
       ) : (
         <>
@@ -38,11 +38,7 @@ export const HomeLayout = ({
               tabs={tabs}
               selected={tab}
             />
-            <Carousel
-              data={
-                carousels.find(car => car.type === tab) ?? ({} as CarouselModel)
-              }
-            />
+            <Carousel data={carousels[tab - 1]} />
           </View>
         </>
       )}
