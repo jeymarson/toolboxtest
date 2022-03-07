@@ -16,7 +16,8 @@
       "@screens/*": ["src/screens/*"],
       "@config/*": ["src/config/*"],
       "@services/*": ["src/services/*"],
-      "@models/*": ["src/models/*"]
+      "@models/*": ["src/models/*"],
+      "@assets/*": ["src/assets/*"]
     },
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,

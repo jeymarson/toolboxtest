@@ -4,7 +4,7 @@ import AnchorCarousel from 'react-native-anchor-carousel';
 
 import {Carousel as CarouselModel, Item} from '@models/carouselModels';
 
-import {ItemCarousel} from '../ItemCarousel/ItemCarousel';
+import {ItemCarousel} from '../ItemCarousel';
 
 export const Carousel = ({data: {type, items}}: {data: CarouselModel}) => {
   const ref = useRef(null);
