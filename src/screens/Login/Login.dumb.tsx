@@ -4,17 +4,20 @@ import {SafeAreaView, Text} from 'react-native';
 import {CustomButton} from '@components/CustomButton';
 
 import {styles} from './styles';
+import {ErrorModal} from '@components/ErrorModal';
 
 type LoginContainerProps = {
   onLogin: () => void;
-  onExit: () => void;
   loading: boolean;
+  error: string;
+  setError: (error: string) => void;
 };
 
 export const LoginLayout = ({
   onLogin,
-  onExit,
   loading,
+  error,
+  setError,
 }: LoginContainerProps) => {
   return (
     <SafeAreaView style={styles.container}>
@@ -26,8 +29,8 @@ export const LoginLayout = ({
         loading={loading}
         disabled={loading}
       />
-      <CustomButton label="Salir" onPress={onExit} disabled={loading} />
       <Text style={styles.footer}>toolbox test app</Text>
+      <ErrorModal show={!!error} setShow={() => setError('')} error={error} />
     </SafeAreaView>
   );
 };

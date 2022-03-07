@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {AxiosResponse} from 'axios';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {LoginResponse} from '@models/loginModels';
@@ -6,12 +7,13 @@ import {RootStackParamList} from '@config/router';
 import {login as loginService, addAuthHeader} from '@services/authService';
 
 import {LoginLayout} from './Login.dumb';
-import {AxiosResponse} from 'axios';
+
 
 type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
 export const Login = ({navigation}: LoginProps) => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const handleLogin = async () => {
     setLoading(true);
     try {
@@ -23,15 +25,17 @@ export const Login = ({navigation}: LoginProps) => {
       navigation.replace('Home');
     } catch (error) {
       setLoading(false);
+      setError('Ha ocurrido un error al iniciar sesión');
       console.log(error);
     }
   };
 
-  const handleExit = () => {
-    console.log('EXIT');
-  };
-
   return (
-    <LoginLayout onExit={handleExit} onLogin={handleLogin} loading={loading} />
+    <LoginLayout
+      onLogin={handleLogin}
+      loading={loading}
+      error={error}
+      setError={setError}
+    />
   );
 };
